@@ -1,0 +1,35 @@
+# A generator that yields Fibonacci numbers instead of returning a list
+def Fibonacci(n):
+    num = 0
+    prior1 = 0
+    prior2 = 0
+    while num < n:
+        value = prior1 + prior2
+        prior1 = prior2
+        prior2 = 1 if value == 0 else value
+        yield value
+        num += 1
+
+if __name__ == "__main__":
+    fib10 = [x for x in Fibonacci(10)]
+    print "fib10: " + str(fib10)
+    fib5 = Fibonacci(5)
+    print "fib5-1: " + str(fib5.next())
+    print "fib5-2: " + str(fib5.next())
+    print "fib5-3: " + str(fib5.next())
+    print "fib5-4: " + str(fib5.next())
+    print "fib5-5: " + str(fib5.next())
+    try:
+        print "fib5-6: " + str(fib5.next())
+    except:
+        print "fib5-6: Caught exception"
+    """
+        Expected output:
+            fib10: [0, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+            fib5-1: 0
+            fib5-2: 1
+            fib5-3: 2
+            fib5-4: 3
+            fib5-5: 5
+            fib5-6: Caught exception
+    """
